@@ -43,6 +43,7 @@ while (op === "/" || op === "*" || op === "-" || op === "+" ) {
             console.log(num1+num2)
             break;
         default:
+            alert("Ud decidio salir del algoritmo, muchas gracias!!!")
             break;
     }
     op = prompt("Ingrese el operador que desea utilizar \n/ para Dividir.\n * para Multiplicar\n - para Restar\n + para Sumar\n Cualquier tecla para salir");
