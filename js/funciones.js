@@ -1,50 +1,60 @@
-let edad = parseInt(prompt("Ingrese su edad"));
-if(edad < 18){
-    console.log("Ud es menor de edad, pero puede acceder igual a la página");
-    alert("Ud es menor de edad, pero puede acceder igual a la página");
-}else{
-    console.log("Ud es mayor de edad, pero puede acceder igual a la página");
-    alert("Ud es mayor de edad, pero puede acceder igual a la página");
-}
+let comentarios = "";
+let cantidad = suma = puntuacion = 0;
+let usuario = "";
 
-for (let i = 1; i <= 10; i++) {
-    console.log("Tabla del " + i);
-    for (let j = 1; j <= 10; j++) {
-        console.log(i +" x " + j + " = " + i*j);        
+const logout = () => {
+    alert("Gracias por tu visita " + usuario + ", ojala vuelvas pronto.");
+    usuario = "";
+}
+const comentario = (usuario, texto) => {
+    alert(comentarios = "El usuario: " + usuario + ", comento " + texto + "\n" + comentarios);
+}
+const calificacion = (punto) => {
+    cantidad++;
+    suma = suma + punto;
+    puntuacion = (suma/cantidad);
+    alert(puntuacion);
+}
+const login = () => {
+    usuario = prompt("Por favor ingrese su nombre para iniciar y asi poder realizar algun comentario y puntuar alguna receta o producto");
+    while(usuario == "" || usuario.length <= 2){
+        usuario = prompt("Por favor ingrese su nombre para iniciar y asi poder realizar algun comentario y puntuar alguna receta o producto");
+    }
+    let op = parseInt(prompt("Bienvenido " + usuario +"\nElija una opcion\n 1- Cerrar Sesión\n 2- Comentar\n 3- Calificar"));
+    while(op >=1 && op <= 3){
+        switch (op) {
+            case 1:
+                logout();
+                op = 4;
+                break;
+            case 2:
+                comentario(usuario,prompt("Ingrese su comentario"));
+                op = parseInt(prompt("Bienvenido " + usuario +"\nElija una opcion\n 1- Cerrar Sesión\n 2- Comentar\n 3- Calificar"));
+                break;
+            case 3:
+                calificacion(parseInt(prompt("Ingrese su puntuacion")));
+                op = parseInt(prompt("Bienvenido " + usuario +"\nElija una opcion\n 1- Cerrar Sesión\n 2- Comentar\n 3- Calificar"));
+                break;
+        }
     }
 }
-
-let leer = parseInt(prompt("Ingrese el numero de la tabla que desea consultar"));
-
-while (leer <= 0 || isNaN(leer)){
-    alert("Por favor ingrese un número y que sea mayor a cero ");
-    leer = prompt("Ingrese el numero de la tabla que desea consultar");
-}
-console.log("Tabla del " + leer);
-for (let i = 1; i <= 10; i++) {
-    console.log(leer + " x " + i + " = " + leer*i); 
-}
-
-let op = prompt("Ingrese el operador que desea utilizar \n/ para Dividir.\n * para Multiplicar\n - para Restar\n + para Sumar\n Cualquier tecla para salir");
-while (op === "/" || op === "*" || op === "-" || op === "+" ) {
-    let num1 = parseInt(prompt("Ingrese el primer numero"));
-    let num2 = parseInt(prompt("Ingrese el segundo numero"));
+let op = parseInt(prompt("por favor elija una opcion \n 1- Iniciar Sesión \n 2- Ver Productos \n 3- Ver Recetas\nCualquier otra tecla para salir."));
+while(op >=1 && op <= 3){
     switch (op) {
-        case "/":
-            console.log(num1/num2)
+        case 1:
+            login();
+            op = parseInt(prompt("por favor elija una opcion \n 1- Iniciar Sesión \n 2- Ver Productos \n 3- Ver Recetas"));
             break;
-        case "*":
-            console.log(num1*num2)            
+        case 2:
+            alert("Producto 1\nProducto 2\nProducto 3\nProducto 4\nProducto 5\n");
+            op = parseInt(prompt("por favor elija una opcion \n 1- Iniciar Sesión \n 2- Ver Productos \n 3- Ver Recetas"));
             break;
-        case "-":
-            console.log(num1-num2)
-            break;
-        case "+":
-            console.log(num1+num2)
+        case 3:
+            alert("Receta 1\nReceta 2\nReceta 3\nReceta 4\nReceta 5");
+            op = parseInt(prompt("por favor elija una opcion \n 1- Iniciar Sesión \n 2- Ver Productos \n 3- Ver Recetas"));
             break;
         default:
-            alert("Ud decidio salir del algoritmo, muchas gracias!!!")
+            op = prompt("por favor elija una opcion \n 1- Iniciar Sesión \n 2- Ver Productos \n 3- Ver Recetas");
             break;
     }
-    op = prompt("Ingrese el operador que desea utilizar \n/ para Dividir.\n * para Multiplicar\n - para Restar\n + para Sumar\n Cualquier tecla para salir");
 }
