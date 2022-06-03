@@ -20,7 +20,7 @@ const login = () => {
     while(usuario == "" || usuario.length <= 2){
         usuario = prompt("Por favor ingrese su nombre para iniciar y asi poder realizar algun comentario y puntuar alguna receta o producto");
     }
-    let op = parseInt(prompt("Bienvenido " + usuario +"\nElija una opcion\n 1- Cerrar Sesión\n 2- Comentar\n 3- Calificar"));
+    let op = parseInt(prompt("Bienvenido " + usuario +"\nElija una opcion\n 1- Cerrar Sesión\n 2- Comentar\n 3- Calificar\nCualquier tecla para salir."));
     while(op >=1 && op <= 3){
         switch (op) {
             case 1:
@@ -32,7 +32,11 @@ const login = () => {
                 op = parseInt(prompt("Bienvenido " + usuario +"\nElija una opcion\n 1- Cerrar Sesión\n 2- Comentar\n 3- Calificar"));
                 break;
             case 3:
-                calificacion(parseInt(prompt("Ingrese su puntuacion")));
+                let p = parseInt(prompt("Ingrese su puntuacion"));
+                while(isNaN(p)){
+                    p = parseInt(prompt("Ingrese su puntuacion"));
+                }
+                calificacion(p);
                 op = parseInt(prompt("Bienvenido " + usuario +"\nElija una opcion\n 1- Cerrar Sesión\n 2- Comentar\n 3- Calificar"));
                 break;
         }
