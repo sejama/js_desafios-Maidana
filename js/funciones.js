@@ -51,7 +51,6 @@ class Usuario{
     }
 }
 
-
 const logout = () => {
     alert("Gracias por tu visita " + usuarioLog + ", ojala vuelvas pronto.");
     usuarioLog = "";
@@ -72,6 +71,7 @@ const calificacion = (punto) => {
     puntuacion = (suma/cantidad);
     alert(puntuacion);
 }
+
 const login = () => {
     if(usuarios.length == 0) {
         alert("No existen usaurios registrados, por favor registrese!");
@@ -115,6 +115,7 @@ const login = () => {
         }
     }
 }
+
 const registrar = () => {
     let nombre = prompt("Por favor ingrese su nombre: ");
     while(nombre == "" || nombre == " "){nombre = prompt("Por favor ingrese su nombre: ");}
@@ -131,7 +132,6 @@ const registrar = () => {
     }else{
         for (let index = 0; index < usuarios.length; index++) {
             while(usuarios[index].getNombre() === nombre && usuarios[index].getApellido() === apellido){
-            //while(usuarios[index].nombre === nombre && usuarios[index].apellido === apellido){
                 alert("Nombre y apellido ya existente, por favor ingrese su nombre y apellido correcto");
                 nombre = prompt("Por favor ingrese su nombre: ");
                 apellido = prompt("Por favor ingrese su apallido: ");
