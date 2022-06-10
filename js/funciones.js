@@ -34,8 +34,8 @@ class Usuario{
     getNombre(){
         return this.nombre;
     }
-    getApallido(){
-        return this.apallido;
+    getApellido(){
+        return this.apellido;
     }
     getUsuario(){
         return this.usuario;
@@ -49,7 +49,6 @@ class Usuario{
     getYear(){
         return this.fechaYear;
     }
-
 }
 
 
@@ -57,16 +56,65 @@ const logout = () => {
     alert("Gracias por tu visita " + usuarioLog + ", ojala vuelvas pronto.");
     usuarioLog = "";
 }
-/*
+
 const comentario = (usuario, texto) => {
-    alert(comentarios = "El usuario: " + usuario + ", comento " + texto + "\n" + comentarios);
+    comentarios.push("El usuario: " + usuario + ", comento " + texto);
+    let mostrar = "";
+    for (const com of comentarios) {
+        mostrar = mostrar + com + "\n";
+    }
+    alert(mostrar);
 }
+
 const calificacion = (punto) => {
     cantidad++;
     suma = suma + punto;
     puntuacion = (suma/cantidad);
     alert(puntuacion);
-}*/
+}
+const login = () => {
+    if(usuarios.length == 0) {
+        alert("No existen usaurios registrados, por favor registrese!");
+        return;
+    }
+    
+    let existe = false;
+    let us = prompt("Por favor ingrese su usuario para iniciar");
+    while(!existe){
+        for (let index = 0; index < usuarios.length; index++) {
+            if(usuarios[index].usuario === us) {
+                existe = true;
+                usuarioLog = us;
+                break;
+            }
+        }
+    }
+    if(!existe){
+        alert("El usuario no existe!" + usuarios[index].usuario + " " + us);
+        us = prompt("Por favor ingrese su usuario para iniciar");
+    }
+    let op = parseInt(prompt("Bienvenido " + usuarioLog +"\nElija una opcion\n 1- Cerrar Sesión\n 2- Comentar\n 3- Calificar\nCualquier tecla para salir."));
+    while(op >=1 && op <= 3){
+        switch (op) {
+            case 1:
+                logout();
+                op = 4;
+                break;
+            case 2:
+                comentario(usuarioLog,prompt("Ingrese su comentario"));
+                op = parseInt(prompt("Bienvenido " + usuarioLog +"\nElija una opcion\n 1- Cerrar Sesión\n 2- Comentar\n 3- Calificar"));
+                break;
+            case 3:
+                let p = parseInt(prompt("Ingrese su puntuacion"));
+                while(isNaN(p)){
+                    p = parseInt(prompt("Ingrese su puntuacion"));
+                }
+                calificacion(p);
+                op = parseInt(prompt("Bienvenido " + usuarioLog +"\nElija una opcion\n 1- Cerrar Sesión\n 2- Comentar\n 3- Calificar"));
+                break;
+        }
+    }
+}
 const registrar = () => {
     let nombre = prompt("Por favor ingrese su nombre: ");
     while(nombre == "" || nombre == " "){nombre = prompt("Por favor ingrese su nombre: ");}
@@ -82,12 +130,13 @@ const registrar = () => {
         usuarios.push(user);
     }else{
         for (let index = 0; index < usuarios.length; index++) {
-            while(usuarios[index].nombre === nombre && usuarios[index].apellido === apellido){
+            while(usuarios[index].getNombre() === nombre && usuarios[index].getApellido() === apellido){
+            //while(usuarios[index].nombre === nombre && usuarios[index].apellido === apellido){
                 alert("Nombre y apellido ya existente, por favor ingrese su nombre y apellido correcto");
                 nombre = prompt("Por favor ingrese su nombre: ");
                 apellido = prompt("Por favor ingrese su apallido: ");
             }
-            while(usuarios[index].usuario === usuario) {
+            while(usuarios[index].getUsuario() === usuario) {
                 alert("Usuario existente!");
                 usuario = prompt("Por favor ingrese su usuario: ");
             }
@@ -98,41 +147,7 @@ const registrar = () => {
     console.log(usuarios);   
 }
 
-const login = () => {
-    if(usuarios.length == 0) {
-        alert("No existen usaurios registrados, por favor registrese!");
-        return;
-    }
-    let us = prompt("Por favor ingrese su usuario para iniciar");
-    for (let index = 0; index < usuarios.length; index++){
-        while(usuarios[index].usuario == us) {
-            alert("El usuario no existe!");
-            us = prompt("Por favor ingrese su usuario: ");
-        }
-        usuarioLog = us
-    }
-    let op = parseInt(prompt("Bienvenido " + usuarioLog +"\nElija una opcion\n 1- Cerrar Sesión\n 2- Comentar\n 3- Calificar\nCualquier tecla para salir."));
-    while(op >=1 && op <= 3){
-        switch (op) {
-            case 1:
-                logout();
-                op = 4;
-                break;
-            case 2:
-                comentario(usuario,prompt("Ingrese su comentario"));
-                op = parseInt(prompt("Bienvenido " + usuario +"\nElija una opcion\n 1- Cerrar Sesión\n 2- Comentar\n 3- Calificar"));
-                break;
-            case 3:
-                let p = parseInt(prompt("Ingrese su puntuacion"));
-                while(isNaN(p)){
-                    p = parseInt(prompt("Ingrese su puntuacion"));
-                }
-                calificacion(p);
-                op = parseInt(prompt("Bienvenido " + usuario +"\nElija una opcion\n 1- Cerrar Sesión\n 2- Comentar\n 3- Calificar"));
-                break;
-        }
-    }
-}
+
 let op = parseInt(prompt("por favor elija una opcion \n 1- Iniciar Sesión \n 2- Registrar \n 3- Ver Productos \n 4- Ver Recetas\nCualquier otra tecla para salir."));
 while(op >=1 && op <= 4){
     switch (op) {
