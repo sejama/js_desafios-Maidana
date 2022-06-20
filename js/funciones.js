@@ -4,14 +4,59 @@ let usuarios = [];
 let usuarioLog = "";
 const producotos = [];
 const recetas = [];
+
+let visitante = prompt("Hola, quien eres?");
+let titulo = document.getElementById("titulo");
+titulo.innerText = "Bienvenido " +  visitante + " al desafio 4"; 
+
+let h2 = document.createElement("h2");
+h2.innerText = "hola " + visitante + ", esta es la entrega 4";
+document.body.appendChild(h2);
+
+
+class Prodcto{
+    constructor(id, nombre, categoria, precio){
+        this.id = id;
+        this.nomre = nombre;
+        this.categoria = categoria;
+        this.precio = precio;
+    }
+}
+
+class Receta{
+    constructor(id, titulo, descripcion){
+        this.id = id;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+    }
+}
+
+class Comentario{
+    constructor(prodcuto, receta, usuario, comentario, fecha){
+        this.prodcuto = prodcuto;
+        this.receta = receta;
+        this.usuario = usuario;
+        this.comentario = comentario;
+        this.fecha = fecha;
+    }
+}
+
+class Calificar{
+    constructor(prodcuto, receta, usuario, puntos, fecha){
+        this.prodcuto = prodcuto;
+        this.receta = receta;
+        this.usuario = usuario;
+        this.puntos = puntos;
+        this.fecha = fecha;
+    }
+}
+
 class Usuario{
-    constructor(nombre, apellido, usuario, fechaDia, fechaMes, fechaYear){
+    constructor(nombre, apellido, usuario, fechaNacimiento){
         this.nombre = nombre;
         this.apellido = apellido;
         this.usuario = usuario;
-        this.fechaDia = fechaDia;
-        this.fechaMes = fechaMes;
-        this.fechaYear = fechaYear;
+        this.fechaNacimiento = fechaNacimiento;
     }
     setNombre(nombre){
         this.nombre = nombre;
@@ -21,15 +66,6 @@ class Usuario{
     }
     setUsuario(usuario){
         this.usuario = usuario;
-    }
-    setDia(dia){
-        this.fechaDia = dia;
-    }
-    setMes(mes){
-        this.fechaMes = mes;
-    }
-    setYear(year){
-        this.fechaYear = year;
     }
     getNombre(){
         return this.nombre;
@@ -41,13 +77,13 @@ class Usuario{
         return this.usuario;
     }
     getDia(){
-        return this.fechaDia;
+        return this.fechaNacimiento.getDay();
     }
     getMes(){
-        return this.fechaMes;
+        return this.fechaNacimiento.getMonth() + 1  ;
     }
     getYear(){
-        return this.fechaYear;
+        return this.fechaNacimiento.getFullYear();
     }
 }
 
@@ -77,22 +113,15 @@ const login = () => {
         alert("No existen usaurios registrados, por favor registrese!");
         return;
     }
-    
-    let existe = false;
     let us = prompt("Por favor ingrese su usuario para iniciar");
-    while(!existe){
-        for (let index = 0; index < usuarios.length; index++) {
-            if(usuarios[index].usuario === us) {
-                existe = true;
-                usuarioLog = us;
-                break;
-            }
-        }
-    }
-    if(!existe){
-        alert("El usuario no existe!" + usuarios[index].usuario + " " + us);
+    let encontro = usuarios.some((el)=> el.usuario === us);
+    while(!encontro){
+        alert("El usuario no existe!");
         us = prompt("Por favor ingrese su usuario para iniciar");
+        encontro = usuarios.some((el)=> el.usuario === us)
     }
+    usuarioLog = us;
+    
     let op = parseInt(prompt("Bienvenido " + usuarioLog +"\nElija una opcion\n 1- Cerrar Sesión\n 2- Comentar\n 3- Calificar\nCualquier tecla para salir."));
     while(op >=1 && op <= 3){
         switch (op) {
@@ -119,32 +148,51 @@ const login = () => {
 const registrar = () => {
     let nombre = prompt("Por favor ingrese su nombre: ");
     while(nombre == "" || nombre == " "){nombre = prompt("Por favor ingrese su nombre: ");}
-    let apellido = prompt("Por favor ingrese su apallido: ");
-    while(apellido == "" || apellido == " "){apellido = prompt("Por favor ingrese su apellido");}    
+    let encontroNombre = usuarios.some((el)=> el.nombre == nombre);
+
+    let apellido = prompt("Por favor ingrese su apellido: ");
+    while(apellido == "" || apellido == " "){apellido = prompt("Por favor ingrese su apellido");}
+    let encontroApellido = usuarios.some((el)=> el.apellido === apellido);    
+    
+    while(encontroNombre && encontroApellido){
+        alert("Nombre y apellido ya existente, por favor ingrese su nombre y apellido correcto");
+        nombre = prompt("Por favor ingrese su nombre: ");
+        encontroNombre = usuarios.some((el)=> el.nombre == nombre);
+        apellido = prompt("Por favor ingrese su apallido: ");
+        encontroApellido = usuarios.some((el)=> el.apellido === apellido);
+    }
+
     let usuario = prompt("Por favor ingrese su usuario: ");
     while(usuario == "" || usuario == " "){usuario = prompt("Por favor ingrese su usuario: ");}
-    //let fechaDia = parseInt(prompt("Por favor ingrese su día de nacimimiento: "));
-    //let fechaMes = parseInt(prompt("Por favor ingrese su mes de nacimimiento: "));
-    //let fechaYear = parseInt(prompt("Por favor ingrese su año de nacimimiento: "));
-    if(usuarios.length == 0){ 
-        const user = new Usuario(nombre, apellido, usuario, 1, 1, 2000);
-        usuarios.push(user);
-    }else{
-        for (let index = 0; index < usuarios.length; index++) {
-            while(usuarios[index].getNombre() === nombre && usuarios[index].getApellido() === apellido){
-                alert("Nombre y apellido ya existente, por favor ingrese su nombre y apellido correcto");
-                nombre = prompt("Por favor ingrese su nombre: ");
-                apellido = prompt("Por favor ingrese su apallido: ");
-            }
-            while(usuarios[index].getUsuario() === usuario) {
-                alert("Usuario existente!");
-                usuario = prompt("Por favor ingrese su usuario: ");
-            }
-        }    
-        const user = new Usuario(nombre, apellido, usuario, 1, 1, 1990);
-        usuarios.push(user); 
+    let encontroUsuario = usuarios.some((el)=> el.usuario === usuario);
+
+    while(encontroUsuario) {
+        alert("Usuario existente!");
+        usuario = prompt("Por favor ingrese su usuario: ");
+        encontroUsuario = usuarios.some((el)=> el.usuario === usuario);
     }
-    console.log(usuarios);   
+
+    let fechaDia = parseInt(prompt("Por favor ingrese su día de nacimimiento: "));
+    while(fechaDia < 1 || fechaDia > 31){
+        fechaDia = parseInt(prompt("Por favor ingrese su día de nacimimiento: "));
+    }  
+
+    let fechaMes = parseInt(prompt("Por favor ingrese su mes de nacimimiento: "));
+    while(fechaMes < 1 || fechaMes > 12){
+        fechaMes = parseInt(prompt("Por favor ingrese su mes de nacimimiento: "));
+    }
+    
+    let fechaYear = parseInt(prompt("Por favor ingrese su año de nacimimiento: "));
+    let actual = new Date().getFullYear();
+    while(fechaYear < (actual-110) || fechaYear >= actual){
+        alert("Año incorrecto, por favor ingresar uno correcto");
+        fechaYear = parseInt(prompt("Por favor ingrese su año de nacimimiento: "));
+    }
+    
+    let nacimiento = new Date(fechaYear,fechaMes-1,fechaDia)
+        
+    const user = new Usuario(nombre, apellido, usuario, nacimiento);
+    usuarios.push(user);
 }
 
 let op = parseInt(prompt("por favor elija una opcion \n 1- Iniciar Sesión \n 2- Registrar \n 3- Ver Productos \n 4- Ver Recetas\nCualquier otra tecla para salir."));
@@ -171,3 +219,18 @@ while(op >=1 && op <= 4){
             break;
     }
 }
+
+if(comentarios.length == 0){
+    let p = document.createElement("p");
+    p.innerText = "No ingresaste comentarios :/";
+    document.body.appendChild(p);
+}else{
+    let p = document.createElement("p");
+    p.innerText = "Estos son los comentaios realizados";
+    document.body.appendChild(p);
+}
+for (const com of comentarios) {
+    let li = document.createElement("li");
+    li.innerHTML = com;
+    document.body.appendChild(li);
+}   
