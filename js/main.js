@@ -1,24 +1,10 @@
-let comentarios = [];
-let cantidad = suma = puntuacion = 0;
-let usuarios = [];
-let usuarioLog = "";
-const productos = [];
-const recetas = [];
-
-let input1  = document.getElementById("nombre")
-input1.addEventListener('input', ()=>{
-    let titulo = document.getElementById("titulo");
-    titulo.innerText = "Bienvenido " +  input1.value + " al desafio 5, desde ahora empieza a desaperecer los prompts y alerts ;)"; 
-})
-
-input1. onchange  =() =>{
-let h2 = document.createElement("h2");
-h2.innerText = "hola " + input1.value + ", esta es la entrega 5";
-document.body.appendChild(h2);
-};
-
+function cambiarModo() { 
+    var cuerpoweb = document.body; 
+    cuerpoweb.classList.toggle("oscuro"); 
+  } 
+/*
 const logout = () => {
-    //alert("Gracias por tu visita " + usuarioLog + ", ojala vuelvas pronto.");
+    alert("Gracias por tu visita " + usuarioLog + ", ojala vuelvas pronto.");
     usuarioLog = "";
 }
 
@@ -28,14 +14,14 @@ const comentario = (usuario, texto) => {
     for (const com of comentarios) {
         mostrar = mostrar + com + "\n";
     }
-    //alert(mostrar);
+    alert(mostrar);
 }
 
 const calificacion = (punto) => {
     cantidad++;
     suma = suma + punto;
     puntuacion = (suma/cantidad);
-    //alert(puntuacion);
+    alert(puntuacion);
 }
 
 const login = () => {
@@ -46,12 +32,11 @@ const login = () => {
     let us = prompt("Por favor ingrese su usuario para iniciar");
     let encontro = usuarios.some((el)=> el.usuario === us);
     while(!encontro){
-        //alert("El usuario no existe!");
+        alert("El usuario no existe!");
         us = prompt("Por favor ingrese su usuario para iniciar");
         encontro = usuarios.some((el)=> el.usuario === us)
     }
     usuarioLog = us;
-    
     let op = parseInt(prompt("Bienvenido " + usuarioLog +"\nElija una opcion\n 1- Cerrar Sesión\n 2- Comentar\n 3- Calificar\nCualquier tecla para salir."));
     while(op >=1 && op <= 3){
         switch (op) {
@@ -85,7 +70,7 @@ const registrar = () => {
     let encontroApellido = usuarios.some((el)=> el.apellido === apellido);    
     
     while(encontroNombre && encontroApellido){
-        //alert("Nombre y apellido ya existente, por favor ingrese su nombre y apellido correcto");
+        alert("Nombre y apellido ya existente, por favor ingrese su nombre y apellido correcto");
         nombre = prompt("Por favor ingrese su nombre: ");
         encontroNombre = usuarios.some((el)=> el.nombre == nombre);
         apellido = prompt("Por favor ingrese su apallido: ");
@@ -97,7 +82,7 @@ const registrar = () => {
     let encontroUsuario = usuarios.some((el)=> el.usuario === usuario);
 
     while(encontroUsuario) {
-        //alert("Usuario existente!");
+        alert("Usuario existente!");
         usuario = prompt("Por favor ingrese su usuario: ");
         encontroUsuario = usuarios.some((el)=> el.usuario === usuario);
     }
@@ -115,7 +100,7 @@ const registrar = () => {
     let fechaYear = parseInt(prompt("Por favor ingrese su año de nacimimiento: "));
     let actual = new Date().getFullYear();
     while(fechaYear < (actual-110) || fechaYear >= actual){
-        //alert("Año incorrecto, por favor ingresar uno correcto");
+        alert("Año incorrecto, por favor ingresar uno correcto");
         fechaYear = parseInt(prompt("Por favor ingrese su año de nacimimiento: "));
     }
     
@@ -123,9 +108,9 @@ const registrar = () => {
         
     const user = new Usuario(nombre, apellido, usuario, nacimiento);
     usuarios.push(user);
-}
+}*/
 
-let op = parseInt(prompt("por favor elija una opcion \n 1- Iniciar Sesión \n 2- Registrar \n 3- Ver Productos \n 4- Ver Recetas\nCualquier otra tecla para salir."));
+/*let op = parseInt(prompt("por favor elija una opcion \n 1- Iniciar Sesión \n 2- Registrar \n 3- Ver Productos \n 4- Ver Recetas\nCualquier otra tecla para salir."));
 while(op >=1 && op <= 4){
     switch (op) {
         case 1:
@@ -137,7 +122,7 @@ while(op >=1 && op <= 4){
             op = parseInt(prompt("por favor elija una opcion \n 1- Iniciar Sesión \n 2- Registrar \n 3- Ver Productos \n 4- Ver Recetas\nCualquier otra tecla para salir."));
             break;
         case 3:
-            //alert("Producto 1\nProducto 2\nProducto 3\nProducto 4\nProducto 5");
+            alert("Producto 1\nProducto 2\nProducto 3\nProducto 4\nProducto 5");
             op = parseInt(prompt("por favor elija una opcion \n 1- Iniciar Sesión \n 2- Registrar \n 3- Ver Productos \n 4- Ver Recetas\nCualquier otra tecla para salir."));
             break;
         case 4:
@@ -148,19 +133,4 @@ while(op >=1 && op <= 4){
             op = parseInt(prompt("por favor elija una opcion \n 1- Iniciar Sesión \n 2- Registrar \n 3- Ver Productos \n 4- Ver Recetas\nCualquier otra tecla para salir."));
             break;
     }
-}
-
-if(comentarios.length == 0){
-    let p = document.createElement("p");
-    p.innerText = "No ingresaste comentarios :/";
-    document.body.appendChild(p);
-}else{
-    let p = document.createElement("p");
-    p.innerText = "Estos son los comentaios realizados";
-    document.body.appendChild(p);
-}
-for (const com of comentarios) {
-    let li = document.createElement("li");
-    li.innerHTML = com;
-    document.body.appendChild(li);
-}   
+}*/
