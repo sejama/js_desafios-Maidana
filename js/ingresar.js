@@ -18,8 +18,6 @@ pass.onchange=()=>{
    usuarios.some((el)=> el.contrasena === pass.value) ? existe = true : null;
 }
 
-
-
 let formulario = document.getElementById("formulario-ingresar");
 formulario. addEventListener ("submit", ingresar);
 function ingresar(e){
@@ -49,8 +47,6 @@ function ingresar(e){
         let ingresoMostrar = document.getElementsByClassName("mostrar");
         ingresoMostrar.hidden = true;
         formulario.style.display = 'none';
-        //setTimeout(function(){window.location.href="../index.html";},2500);
-        // buscar una funcion que me traiga los datos del usuario registrado y que lo almacene... 
     }else{
         alert("Usuario y Contraseña incorrecto");
     }

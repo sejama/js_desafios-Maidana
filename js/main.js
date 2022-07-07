@@ -2,6 +2,11 @@ function cambiarModo() {
     var cuerpoweb = document.body; 
     cuerpoweb.classList.toggle("oscuro"); 
   } 
+//Librerias a agregar!!!!
+//Sweet Alert
+//Toastify
+//Luxon
+
 /*
 const logout = () => {
     alert("Gracias por tu visita " + usuarioLog + ", ojala vuelvas pronto.");

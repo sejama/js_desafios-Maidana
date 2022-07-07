@@ -54,12 +54,19 @@ function registrar(e){
         usuarios.push(nuevo);
         localStorage.setItem("usuarios", JSON.stringify(usuarios)); //JSON.parse(localStorage.usuarios))
         formulario.reset();
-        let div = document.createElement("div");
+        /*let div = document.createElement("div");
         div.className = "alert alert-success";
         div.innerHTML = `role="alert"`;
         div.innerText = "Gurdado con exito!";
-        document.body.appendChild(div);
-        setTimeout(function(){window.location.href="ingresar.html";},2500);
+        document.body.appendChild(div);*/
+        Swal.fire({
+            title:'Bienvenido!',
+            text:'Ahora que ya estas registrado, podras realizar comentarios y puntuar!',
+            icon:'success',
+            timer: 3000
+        }).then(() => {
+            window.location.href="ingresar.html";
+        })    
     }else{
         alert("Usuario existente!");
     }
