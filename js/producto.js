@@ -31,13 +31,6 @@ fetch('../json/productos.json')
     
     )//creamos las tarjetas de los productos
     .catch(err => console.log('Solicitud fallida', err)); // Capturar errores
-/*
-    <div class="card-id">
-            <h2 style="text-align: center;">categoria</h2>
-            <img src="img" class="card-img-top" alt=nombre>
-            <div class="card-body">
-              <p class="card-text">nombre</p>
-              <p>$precio</p>
-            </div>
-        </div>
-*/
+
+
+

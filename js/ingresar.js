@@ -45,8 +45,10 @@ function ingresar(e){
         ingresoOcultar[0].style.display = 'none'; // hide
         ingresoOcultar[1].style.display = 'none'; // hide
         let ingresoMostrar = document.getElementsByClassName("mostrar");
-        ingresoMostrar.hidden = true;
+        ingresoMostrar[0].style.display = 'block';
+        console.log(ingresoMostrar);
         formulario.style.display = 'none';
+        sessionStorage.setItem("usuario", JSON.stringify(encontroUsuario));
     }else{
         alert("Usuario y Contraseña incorrecto");
     }

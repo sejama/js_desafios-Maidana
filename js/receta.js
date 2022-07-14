@@ -28,13 +28,3 @@ fetch('../json/recetas.json')
     
     )//creamos las tarjetas de los productos
     .catch(err => console.log('Solicitud fallida', err)); // Capturar errores
-/*
-<div class="card" style="width: 18rem;">
-    <img src="../img/recetas/Ratatuille00019.jpg" class="card-img-top" alt="...">
-    <div class="card-body">
-        <h5 class="card-title">Ratatouille</h5>
-        <p class="card-text">Tiempo aproximado: 25 Porciones: 8 </p>
-        <a href="#" class="btn btn-primary">Ver receta</a>
-    </div>
-</div>
-*/ 

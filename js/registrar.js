@@ -6,8 +6,7 @@ localStorage.usuarios ?
     usuarios.push(element);
     }) 
     : NULL;
-
-
+    
 let nombre = document.getElementById("inputNombre");
 let apellido = document.getElementById("inputApellido");
 let validoNomApe = false;
@@ -31,7 +30,6 @@ user.onchange=()=>{
     let encontroUsuario = usuarios.some((el)=> el.usuario === user.value);
     encontroUsuario ? alert("Usuario existente") : '';
 }
-
 
 let formulario = document.getElementById("formulario-registrar");
 formulario. addEventListener ("submit", registrar);
